@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.DateiAgent" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
