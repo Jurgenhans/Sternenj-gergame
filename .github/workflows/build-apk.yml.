@@ -1,5 +1,5 @@
 
-name: Sternenjaegergame APK bauen
+name: Sternenjaeger APK bauen
 
 on:
   workflow_dispatch:
@@ -7,15 +7,12 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository herunterladen
+      - name: Projekt herunterladen
         uses: actions/checkout@v4
 
       - name: Java einrichten
@@ -24,14 +21,17 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Android APK bauen
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: APK erstellen
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: APK bereitstellen
+      - name: APK hochladen
         uses: actions/upload-artifact@v4
         with:
-          name: Sternenjaegergame-APK
+          name: Sternenjaeger-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
