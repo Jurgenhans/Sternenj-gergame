@@ -13,19 +13,19 @@ jobs:
 
     steps:
       - name: Projekt herunterladen
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Java einrichten
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Android SDK einrichten
-        uses: android-actions/setup-android@v3
-
-      - name: Android Lizenzen akzeptieren
-        run: yes | sdkmanager --licenses
+        uses: android-actions/setup-android@v4
+        with:
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
 
       - name: APK erstellen
         working-directory: entpackt/DateiAgent
