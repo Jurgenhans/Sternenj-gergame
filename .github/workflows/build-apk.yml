@@ -24,6 +24,9 @@ jobs:
       - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
 
+      - name: Android Lizenzen akzeptieren
+        run: yes | sdkmanager --licenses
+
       - name: APK erstellen
         working-directory: entpackt/DateiAgent
         run: |
