@@ -325,7 +325,7 @@ class GenerateReportTool : AgentTool() {
             "html" -> "<!doctype html><html lang=\"de\"><meta charset=\"utf-8\"><title>${title.escHtml()}</title><body><h1>${title.escHtml()}</h1><p><small>Erstellt: $stamp</small></p><pre style=\"white-space:pre-wrap;font-family:sans-serif\">${body.escHtml()}</pre></body></html>".toByteArray()
             "docx" -> OfficeWriter.docx("$title\nErstellt: $stamp\n\n$body")
             "txt" -> "$title\nErstellt: $stamp\n\n$body".toByteArray()
-            else -> "# $title\n\n_Erstellt: $stamp_\n\n$body\n".toByteArray()
+            else -> "# $title\n\n_Erstellt:${stamp}_\n\n$body\n".toByteArray()
         }
         val w = ctx.fs.writeBytes(path, bytes, false)
         if (w.size != bytes.size.toLong()) return ToolResult(false, "Verifikation fehlgeschlagen.", paths = listOf(path), mutated = true)
