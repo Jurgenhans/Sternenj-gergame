@@ -11,16 +11,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: entpackt/DateiAgent
-
     steps:
       - name: Projekt herunterladen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Java einrichten
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -29,6 +25,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: APK erstellen
+        working-directory: entpackt/DateiAgent
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
